@@ -1,0 +1,9 @@
+{
+  "name": "Banco Gratidão V16 GERADOR DE FILMES 3 em 1",
+  "short_name": "V16 Filmes",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#FFD700",
+  "icons": [{"src": "https://cdn-icons-png.flaticon.com/512/833/833472.png","sizes": "512x512","type": "image/png"}]
+}
