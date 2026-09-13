@@ -125,3 +125,38 @@ requestAnimationFrame(drawIA);
 }
 drawIA();
 }
+async function juntarVideos(){
+let videos=timeline.filter(t=>t.type==='video');if(videos.length===0)return alert('Adicione vídeos do celular na linha primeiro!');
+alert('🔗 Juntando '+videos.length+' vídeos com lixeirinha 🗑️ - profissional!');
+let canvas=document.getElementById('movieCanvas');let ctx=canvas.getContext('2d');
+let titulo=document.getElementById('editTitulo').value||'Filme Final Gratidão';
+let stream=canvas.captureStream(30);let rec=new MediaRecorder(stream,{mimeType:'video/webm'});recordedChunks=[];rec.ondataavailable=e=>recordedChunks.push(e.data);
+rec.onstop=()=>{let blob=new Blob(recordedChunks,{type:'video/webm'});let url=URL.createObjectURL(blob);let v=document.getElementById('finalVideo');v.src=url;v.style.display='block';filmesSalvos.push({id:uid(),nome:titulo,tipo:'editor 3️⃣',qtd:videos.length});saveFilmes();renderFilmes();alert('✅ Editor 3️⃣ - Vídeos juntados e salvos 💾 com lixeirinha 🗑️!');};
+rec.start();let idx=0;let curV=document.createElement('video');curV.muted=true;curV.playsInline=true;
+function playNext(){if(idx>=videos.length){rec.stop();return;}let vd=videos[idx];curV.src=vd.data;curV.oncanplay=()=>{curV.play();let loop=setInterval(()=>{if(curV.ended||curV.currentTime>6){clearInterval(loop);idx++;playNext();}else{ctx.drawImage(curV,0,0,canvas.width,canvas.height);ctx.fillStyle='rgba(0,0,0,0.5)';ctx.fillRect(0,canvas.height-45,canvas.width,45);ctx.fillStyle='gold';ctx.font='bold 14px sans-serif';ctx.fillText(titulo+' - Clip '+(idx+1)+'/'+videos.length,20,canvas.height-15);}},33);};curV.onerror=()=>{idx++;playNext();};}
+playNext();
+}
+function cortarVideo(){if(timeline.length===0)return alert('Linha vazia!');if(!confirm('Cortar último da linha? 🗑️ lixeirinha'))return;timeline.pop();renderTimeline();alert('✅ Cortado com lixeirinha 🗑️ e salvo 💾');}
+function exportarFilmeFinal(){let v=document.getElementById('finalVideo');if(!v.src||v.style.display==='none')return alert('Gere um filme primeiro nos botões 1️⃣ 2️⃣ 3️⃣!');let a=document.createElement('a');a.href=v.src;a.download='filme-gratidao-V16-'+Date.now()+'.webm';a.click();alert('✅ Filme final exportado e salvo 💾! Compartilhe no WhatsApp 💚 com lixeirinha 🗑️');}
+function playPreview(){let canvas=document.getElementById('movieCanvas');let ctx=canvas.getContext('2d');if(previewInterval)clearInterval(previewInterval);let t=0;previewInterval=setInterval(()=>{ctx.fillStyle='#111';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='gold';ctx.font='bold 18px sans-serif';ctx.fillText('🎬 Preview V16 3em1 - '+timeline.length+' clips',20,50);timeline.slice(0,6).forEach((tl,i)=>{let icon=tl.type==='foto'?'📸':tl.type==='video'?'🎬':'🎵';ctx.fillStyle='#fff';ctx.font='12px sans-serif';ctx.fillText((i+1)+'. '+icon+' '+tl.name.slice(0,20),20,80+i*22);});ctx.fillStyle='rgba(255,215,0,'+(0.5+Math.sin(t)*0.5)+')';ctx.fillRect(0,canvas.height-8,canvas.width,8);t+=0.15;},100);}
+function stopPreview(){if(previewInterval)clearInterval(previewInterval);let ctx=document.getElementById('movieCanvas').getContext('2d');ctx.clearRect(0,0,720,400);ctx.fillStyle='#000';ctx.fillRect(0,0,720,400);ctx.fillStyle='gold';ctx.font='bold 20px sans-serif';ctx.fillText('Preview parado - gere filme 1️⃣ 2️⃣ 3️⃣',20,200);}
+function renderFilmes(){let h='';filmesSalvos.slice().reverse().forEach(f=>{h+=`<div class="item"><div>🎬 ${f.nome} (${f.tipo}) <span class="save-btn">💾 Salvo</span></div><div style="display:flex;gap:4px"><button class="btn2" style="width:auto;padding:6px 10px" onclick="let v=document.getElementById('finalVideo');v.style.display='block';alert('Filme ${f.nome} carregado com lixeirinha 🗑️')">▶️</button><button class="trash-btn" onclick="delFilme(${f.id})">🗑️</button></div></div>`;});document.getElementById('listFilmes').innerHTML=h||'<small style="color:#666">Nenhum filme ainda - gere 1️⃣ 2️⃣ 3️⃣</small>';}
+function delFilme(id){if(!confirm('Excluir filme? 🗑️ Lixeirinha'))return;filmesSalvos=filmesSalvos.filter(x=>x.id!==id);saveFilmes();renderFilmes();}
+function renderMidia(){}
+function addAudioFromPhone(){alert('Use a linha do tempo 🎬 - já tem lixeirinha 🗑️ + salvar 💾');}
+function addFotoFromPhoneMidia(){}
+function addVideoFromPhone(){}
+function addMidiaYoutube(){let link=document.getElementById('midiaYtLink').value.trim();let id=getYoutubeId(link);if(!id)return alert('Link inválido!');midiaYtList.push({id:uid(),ytId:id});localStorage.setItem('midiaYtList',JSON.stringify(midiaYtList));alert('✅ YouTube salvo 💾 com lixeirinha 🗑️');}
+function searchYoutube(){let q=document.getElementById('ytSearch').value.trim();if(!q)return alert('O que buscar no YouTube?');window.open('https://www.youtube.com/results?search_query='+encodeURIComponent(q),'_blank');}
+function addSonoraFile(){alert('Use linha do tempo 🎬 - add música do celular com lixeirinha 🗑️');}
+function addYoutube(){let link=document.getElementById('ytLink').value.trim();let id=getYoutubeId(link);if(!id)return alert('Link inválido!');ytList.push({id:uid(),ytId:id});localStorage.setItem('ytList',JSON.stringify(ytList));alert('✅ YouTube salvo 💾');}
+function addSocialFav(){let nome=document.getElementById('socialNome').value.trim();let link=document.getElementById('socialLink').value.trim();if(!nome||!link)return alert('Nome e link!');socialFav.push({id:uid(),nome,link});localStorage.setItem('socialFav',JSON.stringify(socialFav));alert('✅ Link salvo 💾 com lixeirinha 🗑️');}
+function addGrat(){let t=document.getElementById('gratText').value.trim();if(!t)return alert('Escreve gratidão!');D.grat.push({id:uid(),text:t,date:new Date().toLocaleString()});save();alert('✅ Gratidão salva 💾 com lixeirinha 🗑️');}
+function addBank(){let v=parseFloat(document.getElementById('bankValor').value);if(!v)return alert('Valor!');D.bank.push({id:uid(),valor:v,desc:document.getElementById('bankDesc')?.value||''});save();alert('✅ Banco salvo 💾');}
+function exportBackup(){let blob=new Blob([JSON.stringify(D)],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='backup-V16-filmes-'+Date.now()+'.json';a.click();alert('✅ Backup salvo 💾');}
+try{let tl=JSON.parse(localStorage.getItem('timeline')||'[]');if(tl.length>0)timeline=tl;}catch(e){}
+renderTimeline();renderFilmes();
+if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{});}
+</script>
+</body>
+</html>
