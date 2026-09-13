@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#FFD700">
+<link rel="manifest" href="manifest.json">
+<title>Banco Gratidão V16 - GERADOR DE FILMES - 1+2+3</title>
+<style>
+:root{--g:#FFD700}*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui}
+body{background:#000;color:#fff;padding-bottom:130px}
+.top{position:sticky;top:0;z-index:99;background:#000;border-bottom:3px solid var(--g);padding:8px;display:flex;gap:6px;overflow:auto;white-space:nowrap}
+.pill{padding:10px 14px;border-radius:30px;border:2px solid #333;background:#1a1a1a;color:#fff;font-weight:900;font-size:12px;white-space:nowrap}
+.pill.on{background:var(--g);color:#000}
+.wrap{max-width:860px;margin:auto;padding:10px}
+.card{margin:12px 0;border:3px solid var(--g);border-radius:18px;padding:14px;background:#111}
+.h{color:var(--g);font-weight:900;font-size:17px;margin-bottom:8px}
+.btn{background:var(--g);color:#000;border:none;border-radius:30px;padding:14px;font-weight:900;width:100%;margin-top:8px;font-size:15px}
+.btn2{background:#111;color:var(--g);border:2px solid var(--g);border-radius:30px;padding:12px;font-weight:900;width:100%;margin-top:6px}
+.in{width:100%;background:#000;border:2px solid #333;border-radius:12px;padding:12px;color:#fff;margin:6px 0}
+.item{display:flex;justify-content:space-between;align-items:center;background:#0f0f0f;border:1px solid #222;border-radius:12px;padding:10px;margin:7px 0;gap:8px}
+.screen{display:none}.screen.show{display:block}
+.trash-btn{background:#300;border:2px solid #f44;color:#f88;border-radius:10px;padding:6px 10px;font-weight:900}
+.save-btn{background:#003300;border:2px solid #0f0;color:#0f0;border-radius:10px;padding:6px 10px;font-weight:900}
+.pulse{animation:pulse 1.5s infinite}@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
+.timeline{display:flex;gap:6px;overflow:auto;padding:8px;background:#000;border:2px dashed gold;border-radius:12px;margin:8px 0}
+.tl-item{min-width:90px;border:2px solid gold;border-radius:10px;padding:6px;text-align:center;background:#1a1a1a}
+canvas#movieCanvas{width:100%;border:3px solid gold;border-radius:16px;background:#000}
+</style>
+</head>
+<body>
+<div class="top">
+<button class="pill on" onclick="tab('filmes',this)">🎬 FILMES V16</button>
+<button class="pill" onclick="tab('midia',this)">📁 Mídia</button>
+<button class="pill" onclick="tab('fotos',this)">📸 Fotos</button>
+<button class="pill" onclick="tab('sonora',this)">🎵 Sonora</button>
+<button class="pill" onclick="tab('social',this)">🌐 Redes</button>
+<button class="pill" onclick="tab('grat',this)">✨ Gratidão</button>
+<button class="pill" onclick="tab('banco',this)">💰 Banco</button>
+<button class="pill" onclick="tab('apoiar',this)">❤️ Apoiar</button>
+<button class="pill" onclick="tab('backup',this)">💾 Backup</button>
+</div>
+<div class="wrap">
+<div id="s-filmes" class="screen show">
+<div class="card" style="border:3px solid gold;background:linear-gradient(135deg,#111,#332200)"><h3 class="h">🎬 V16 GERADOR DE FILMES - 3 EM 1 + LIXEIRINHA 🗑️ + SALVAR 💾</h3><p style="color:#ccc;font-size:12px;text-align:center">1️⃣ Slideshow Fotos + 2️⃣ IA Texto->Filme + 3️⃣ Juntar Vídeos</p></div>
+<div class="card"><h3 class="h">🎞️ LINHA DO TEMPO - Adicione do celular</h3><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px"><div><p style="color:gold;font-size:10px">📸 FOTOS DO CELULAR</p><input type="file" id="filmFoto" accept="image/*" multiple class="in"><button class="btn" onclick="addFilmFoto()">💾 + FOTO</button></div><div><p style="color:gold;font-size:10px">🎬 VÍDEOS DO CELULAR</p><input type="file" id="filmVideo" accept="video/*" multiple class="in"><button class="btn" onclick="addFilmVideo()">💾 + VÍDEO</button></div><div><p style="color:gold;font-size:10px">🎵 MÚSICAS DO CELULAR</p><input type="file" id="filmAudio" accept="audio/*" class="in"><button class="btn" onclick="addFilmAudio()">💾 + ÁUDIO</button></div></div><div style="margin-top:10px"><p style="color:gold;font-size:10px">▶️ YOUTUBE COMO CLIP</p><input id="filmYt" class="in" placeholder="Cole link YouTube"><button class="btn2" onclick="addFilmYt()">▶️ + YOUTUBE</button></div><div class="timeline" id="filmTimeline"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px"><button class="btn2" onclick="clearTimeline()">🗑️ LIMPAR LINHA (Lixeirinha)</button><button class="btn2" onclick="saveTimeline()">💾 SALVAR PROJETO</button></div></div>
+<div class="card"><h3 class="h">1️⃣ GERAR FILME SLIDESHOW (Fotos + Música)</h3><input id="filmTitulo" class="in" placeholder="Título do filme: Minha Gratidão"><input id="filmLegenda" class="in" placeholder="Legenda dourada: Gratidão transforma!"><select id="filmTrans" class="in"><option value="fade">✨ Fade Suave</option><option value="zoom">🔍 Zoom Dourado</option></select><button class="btn pulse" onclick="gerarFilmeSlideshow()">🎬 1️⃣ GERAR FILME SLIDESHOW E SALVAR 💾</button></div>
+<div class="card" style="border:3px solid #0ff"><h3 class="h" style="color:#0ff">2️⃣ GERAR FILME COM IA - Texto vira Filme</h3><textarea id="iaPrompt" class="in" rows="2" placeholder="Ex: praia dourada ao pôr do sol, gratidão, universo brilhando"></textarea><select id="iaEstilo" class="in"><option value="gold">💛 Estilo Dourado Gratidão</option><option value="nature">🌲 Natureza Mágica</option><option value="space">🌌 Universo</option></select><input id="iaDuracao" type="number" class="in" value="10"><button class="btn" style="background:#0ff;color:#000" onclick="gerarFilmeIA()">🤖 2️⃣ GERAR COM IA E SALVAR 💾</button></div>
+<div class="card" style="border:3px solid #f0f"><h3 class="h" style="color:#f0f">3️⃣ EDITOR PROFISSIONAL - Juntar Vídeos</h3><input id="editTitulo" class="in" placeholder="Nome do filme final"><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><button class="btn2" onclick="juntarVideos()">🔗 3️⃣ JUNTAR VÍDEOS E SALVAR</button><button class="btn2" onclick="cortarVideo()">✂️ Cortar Último</button></div><button class="btn" style="background:#f0f;color:#000;margin-top:8px" onclick="exportarFilmeFinal()">💾 EXPORTAR FILME FINAL MP4</button></div>
+<div class="card"><h3 class="h">🎬 PREVIEW DO FILME</h3><canvas id="movieCanvas" width="720" height="400"></canvas><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px"><button class="btn2" onclick="playPreview()">▶️ Play Preview</button><button class="btn2" onclick="stopPreview()">⏹️ Parar</button></div><video id="finalVideo" controls style="width:100%;border:3px solid gold;border-radius:12px;display:none;margin-top:10px"></video><div id="listFilmes" style="margin-top:10px"></div></div>
+</div>
