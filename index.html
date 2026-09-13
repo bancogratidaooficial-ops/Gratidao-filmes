@@ -58,3 +58,70 @@ canvas#movieCanvas{width:100%;border:3px solid gold;border-radius:16px;backgroun
 <div id="s-apoiar" class="screen"><div class="card" style="border:3px solid gold"><h3 class="h">❤️ Apoiar com valor do coração - SALVAR 💾</h3><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"><button style="background:#111;border:2px solid gold;color:gold;border-radius:16px;padding:14px;font-weight:900" onclick="setApoio(5)">R$ 5</button><button style="background:#111;border:2px solid gold;color:gold;border-radius:16px;padding:14px;font-weight:900" onclick="setApoio(20)">R$ 20</button><button style="background:#111;border:2px solid gold;color:gold;border-radius:16px;padding:14px;font-weight:900" onclick="setApoio(100)">R$ 100</button></div><input id="apoioValor" type="number" class="in" placeholder="Valor do coração R$"><input id="pixKey" class="in" value="bancogratidao@gmail.com"><button class="btn pulse" onclick="apoiar()">💾 ❤️ APOIAR - COPIAR PIX E SALVAR</button><p id="apoioMsg" style="color:gold;text-align:center;margin-top:8px"></p></div></div>
 <div id="s-backup" class="screen"><div class="card"><h3 class="h">💾 Backup + Instalar + Central - SALVAR 💾</h3><button class="btn pulse" style="background:gold;color:#000" onclick="instalarApp()">📲 INSTALAR APLICATIVO</button><button class="btn" onclick="exportBackup()">💾 EXPORTAR BACKUP</button><a class="btn2" style="display:block;text-align:center;text-decoration:none" href="https://bancogratidaooficial-ops.github.io/banco-gratidao-central-menu/" target="_blank">🔗 Central todas versões</a></div></div>
 </div>
+<script>
+let D=JSON.parse(localStorage.getItem('v16filmes')||'{"audios":[],"fotos":[],"videos":[],"fotosMidia":[],"grat":[],"bank":[]}');
+let timeline=[], deferredPrompt=null, recordedChunks=[], previewInterval=null;
+let sonoraCustom=JSON.parse(localStorage.getItem('sonoraCustom')||'[]');
+let ytList=JSON.parse(localStorage.getItem('ytList')||'[]');
+let midiaYtList=JSON.parse(localStorage.getItem('midiaYtList')||'[]');
+let socialFav=JSON.parse(localStorage.getItem('socialFav')||'[]');
+let filmesSalvos=JSON.parse(localStorage.getItem('filmesSalvos')||'[]');
+function save(){localStorage.setItem('v16filmes',JSON.stringify(D));}
+function saveFilmes(){localStorage.setItem('filmesSalvos',JSON.stringify(filmesSalvos));}
+function tab(id,el){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('show'));document.getElementById('s-'+id).classList.add('show');document.querySelectorAll('.pill').forEach(p=>p.classList.remove('on'));if(el)el.classList.add('on');}
+function uid(){return Date.now()+Math.random();}
+function fileToBase64(f){return new Promise((res,rej)=>{let r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(f);});}
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
+function instalarApp(){if(deferredPrompt)deferredPrompt.prompt();else alert('Clica nos 3 pontinhos ⋮ > Instalar app');}
+function setApoio(v){document.getElementById('apoioValor').value=v;}
+function apoiar(){let v=document.getElementById('apoioValor').value||10;let pix=document.getElementById('pixKey').value;try{navigator.clipboard.writeText(pix);document.getElementById('apoioMsg').innerText='✅ PIX '+pix+' R$ '+v+' copiado! SALVO!';}catch(e){document.getElementById('apoioMsg').innerText='PIX: '+pix;}}
+function getYoutubeId(url){let m=url.match(/(?:v=|\.be\/|embed\/)([a-zA-Z0-9_-]{11})/);return m?m[1]:null;}
+async function addFilmFoto(){let files=document.getElementById('filmFoto').files;for(let f of files){let b=await fileToBase64(f);timeline.push({id:uid(),type:'foto',name:f.name,data:b});}renderTimeline();alert('✅ Foto na linha com lixeirinha 🗑️');}
+async function addFilmVideo(){let files=document.getElementById('filmVideo').files;for(let f of files){let b=await fileToBase64(f);timeline.push({id:uid(),type:'video',name:f.name,data:b});}renderTimeline();alert('✅ Vídeo na linha com lixeirinha 🗑️');}
+async function addFilmAudio(){let f=document.getElementById('filmAudio').files[0];if(!f)return alert('Escolhe áudio!');let b=await fileToBase64(f);timeline.push({id:uid(),type:'audio',name:f.name,data:b});renderTimeline();alert('✅ Áudio salvo 💾');}
+function addFilmYt(){let link=document.getElementById('filmYt').value.trim();let id=getYoutubeId(link);if(!id)return alert('Link inválido!');timeline.push({id:uid(),type:'yt',name:'YT '+id,ytId:id,link});renderTimeline();alert('✅ YouTube na linha com lixeirinha 🗑️');}
+function renderTimeline(){let h='';timeline.forEach(t=>{let icon=t.type==='foto'?'📸':t.type==='video'?'🎬':t.type==='audio'?'🎵':'▶️';h+=`<div class="tl-item"><div>${icon} ${t.name.slice(0,10)}</div><div style="display:flex;gap:2px;margin-top:4px"><button class="save-btn" style="font-size:9px">💾</button><button class="trash-btn" style="font-size:9px" onclick="delTimeline(${t.id})">🗑️</button></div></div>`;});document.getElementById('filmTimeline').innerHTML=h||'<small style="color:#666">Linha vazia - adicione fotos e vídeos do celular</small>';}
+function delTimeline(id){if(!confirm('Remover da linha? 🗑️'))return;timeline=timeline.filter(x=>x.id!==id);renderTimeline();}
+function clearTimeline(){if(!confirm('Limpar linha toda? 🗑️'))return;timeline=[];renderTimeline();}
+function saveTimeline(){localStorage.setItem('timeline',JSON.stringify(timeline));alert('✅ Linha salva 💾 com lixeirinha 🗑️');}
+async function gerarFilmeSlideshow(){
+if(timeline.length===0)return alert('Adicione fotos na linha!');
+let titulo=document.getElementById('filmTitulo').value||'Meu Filme Gratidão';
+let legenda=document.getElementById('filmLegenda').value||'Gratidão transforma tudo!';
+let canvas=document.getElementById('movieCanvas');let ctx=canvas.getContext('2d');
+let fotos=timeline.filter(t=>t.type==='foto');if(fotos.length===0)return alert('Adicione pelo menos 1 foto do celular!');
+let stream=canvas.captureStream(30);let rec=new MediaRecorder(stream,{mimeType:'video/webm'});recordedChunks=[];rec.ondataavailable=e=>recordedChunks.push(e.data);
+rec.onstop=()=>{let blob=new Blob(recordedChunks,{type:'video/webm'});let url=URL.createObjectURL(blob);let v=document.getElementById('finalVideo');v.src=url;v.style.display='block';filmesSalvos.push({id:uid(),nome:titulo,tipo:'slideshow'});saveFilmes();renderFilmes();alert('✅ Filme slideshow 1️⃣ gerado e salvo 💾 com lixeirinha 🗑️!');};
+rec.start();let idx=0;let framesPerFoto=90;
+let interval=setInterval(()=>{
+if(idx>=fotos.length*framesPerFoto){clearInterval(interval);rec.stop();return;}
+let fotoIdx=Math.floor(idx/framesPerFoto);let progress=(idx%framesPerFoto)/framesPerFoto;
+let img=new Image();img.src=fotos[fotoIdx].data;
+ctx.fillStyle='#000';ctx.fillRect(0,0,canvas.width,canvas.height);
+let scale=1+progress*0.3;let w=canvas.width*scale;let h=canvas.height*scale;
+try{ctx.drawImage(img,(canvas.width-w)/2,(canvas.height-h)/2,w,h);}catch(e){}
+ctx.fillStyle='rgba(0,0,0,0.6)';ctx.fillRect(0,canvas.height-70,canvas.width,70);
+ctx.fillStyle='gold';ctx.font='bold 20px sans-serif';ctx.fillText(titulo,20,canvas.height-40);ctx.font='14px sans-serif';ctx.fillStyle='#fff';ctx.fillText(legenda,20,canvas.height-15);
+idx++;},33);
+}
+async function gerarFilmeIA(){
+let prompt=document.getElementById('iaPrompt').value.trim();if(!prompt)return alert('Digite o que quer ver!');
+let estilo=document.getElementById('iaEstilo').value;let duracao=parseInt(document.getElementById('iaDuracao').value)||10;
+let canvas=document.getElementById('movieCanvas');let ctx=canvas.getContext('2d');
+let stream=canvas.captureStream(30);let rec=new MediaRecorder(stream,{mimeType:'video/webm'});recordedChunks=[];rec.ondataavailable=e=>recordedChunks.push(e.data);
+rec.onstop=()=>{let blob=new Blob(recordedChunks,{type:'video/webm'});let url=URL.createObjectURL(blob);let v=document.getElementById('finalVideo');v.src=url;v.style.display='block';filmesSalvos.push({id:uid(),nome:'IA: '+prompt.slice(0,25),tipo:'ia'});saveFilmes();renderFilmes();alert('✅ Filme IA 2️⃣ gerado e salvo 💾 com lixeirinha 🗑️!');};
+rec.start();let start=Date.now();
+function drawIA(){
+let elapsed=(Date.now()-start)/1000;if(elapsed>duracao){rec.stop();return;}
+let t=elapsed;
+if(estilo==='gold'){let grad=ctx.createRadialGradient(canvas.width/2,canvas.height/2,0,canvas.width/2,canvas.height/2,canvas.width);grad.addColorStop(0,'#FFD700');grad.addColorStop(0.5,'#ff8c00');grad.addColorStop(1,'#000');ctx.fillStyle=grad;ctx.fillRect(0,0,canvas.width,canvas.height);}
+else if(estilo==='space'){ctx.fillStyle='#000';ctx.fillRect(0,0,canvas.width,canvas.height);for(let i=0;i<80;i++){let x=(i*73+t*20)%canvas.width;let y=(i*37+t*10)%canvas.height;ctx.fillStyle='rgba(255,255,100,'+(0.5+Math.sin(t+i)*0.5)+')';ctx.fillRect(x,y,2,2);}}
+else{ctx.fillStyle='#001100';ctx.fillRect(0,0,canvas.width,canvas.height);}
+for(let i=0;i<35;i++){let x=(Math.sin(t+i)*canvas.width/2+canvas.width/2);let y=(Math.cos(t*0.7+i)*canvas.height/2+canvas.height/2);ctx.fillStyle='rgba(255,215,0,'+(0.6+Math.sin(t+i)*0.4)+')';ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fill();}
+ctx.fillStyle='rgba(0,0,0,0.7)';ctx.fillRect(0,canvas.height-70,canvas.width,70);
+ctx.fillStyle='gold';ctx.font='bold 16px sans-serif';ctx.fillText('🤖 IA: '+prompt.slice(0,38),20,canvas.height-40);
+ctx.font='12px sans-serif';ctx.fillStyle='#0ff';ctx.fillText('Estilo '+estilo+' - '+elapsed.toFixed(1)+'s / '+duracao+'s',20,canvas.height-18);
+requestAnimationFrame(drawIA);
+}
+drawIA();
+}
