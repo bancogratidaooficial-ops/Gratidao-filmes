@@ -2,161 +2,61 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#FFD700">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plug TV Gratidão - TV Online Grátis</title>
+
+<!-- SEU CODIGO ADSENSE JA INSTALADO -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2504730768556065" crossorigin="anonymous"></script>
+
+<meta name="theme-color" content="#0f0f0f">
 <link rel="manifest" href="manifest.json">
-<title>Banco Gratidão V16 - GERADOR DE FILMES - 1+2+3</title>
 <style>
-:root{--g:#FFD700}*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui}
-body{background:#000;color:#fff;padding-bottom:130px}
-.top{position:sticky;top:0;z-index:99;background:#000;border-bottom:3px solid var(--g);padding:8px;display:flex;gap:6px;overflow:auto;white-space:nowrap}
-.pill{padding:10px 14px;border-radius:30px;border:2px solid #333;background:#1a1a1a;color:#fff;font-weight:900;font-size:12px;white-space:nowrap}
-.pill.on{background:var(--g);color:#000}
-.wrap{max-width:860px;margin:auto;padding:10px}
-.card{margin:12px 0;border:3px solid var(--g);border-radius:18px;padding:14px;background:#111}
-.h{color:var(--g);font-weight:900;font-size:17px;margin-bottom:8px}
-.btn{background:var(--g);color:#000;border:none;border-radius:30px;padding:14px;font-weight:900;width:100%;margin-top:8px;font-size:15px}
-.btn2{background:#111;color:var(--g);border:2px solid var(--g);border-radius:30px;padding:12px;font-weight:900;width:100%;margin-top:6px}
-.in{width:100%;background:#000;border:2px solid #333;border-radius:12px;padding:12px;color:#fff;margin:6px 0}
-.item{display:flex;justify-content:space-between;align-items:center;background:#0f0f0f;border:1px solid #222;border-radius:12px;padding:10px;margin:7px 0;gap:8px}
-.screen{display:none}.screen.show{display:block}
-.trash-btn{background:#300;border:2px solid #f44;color:#f88;border-radius:10px;padding:6px 10px;font-weight:900}
-.save-btn{background:#003300;border:2px solid #0f0;color:#0f0;border-radius:10px;padding:6px 10px;font-weight:900}
-.pulse{animation:pulse 1.5s infinite}@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
-.timeline{display:flex;gap:6px;overflow:auto;padding:8px;background:#000;border:2px dashed gold;border-radius:12px;margin:8px 0}
-.tl-item{min-width:90px;border:2px solid gold;border-radius:10px;padding:6px;text-align:center;background:#1a1a1a}
-canvas#movieCanvas{width:100%;border:3px solid gold;border-radius:16px;background:#000}
+body{margin:0;background:#0f0f0f;color:#fff;font-family:Arial,sans-serif;text-align:center}
+header{padding:20px;background:#1a1a1a}
+h1{color:#ff7700;margin:0}
+.player{width:100%;max-width:900px;margin:20px auto;aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden}
+iframe{width:100%;height:100%;border:0}
+.lista{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:20px}
+.canal{padding:10px 18px;background:#222;border-radius:20px;cursor:pointer;border:1px solid #333}
+.canal:hover{background:#ff7700;color:#000}
+.anuncio{margin:20px auto;min-height:90px;background:#1a1a1a;border-radius:8px;display:flex;align-items:center;justify-content:center}
 </style>
 </head>
 <body>
-<div class="top">
-<button class="pill on" onclick="tab('filmes',this)">🎬 FILMES V16</button>
-<button class="pill" onclick="tab('midia',this)">📁 Mídia</button>
-<button class="pill" onclick="tab('fotos',this)">📸 Fotos</button>
-<button class="pill" onclick="tab('sonora',this)">🎵 Sonora</button>
-<button class="pill" onclick="tab('social',this)">🌐 Redes</button>
-<button class="pill" onclick="tab('grat',this)">✨ Gratidão</button>
-<button class="pill" onclick="tab('banco',this)">💰 Banco</button>
-<button class="pill" onclick="tab('apoiar',this)">❤️ Apoiar</button>
-<button class="pill" onclick="tab('backup',this)">💾 Backup</button>
+<header>
+<h1>Plug TV Gratidão 🙏</h1>
+<p>Canais ao vivo grátis</p>
+</header>
+
+<div class="anuncio">
+<!-- Anuncio Google vai aparecer aqui -->
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-2504730768556065"
+data-ad-slot="auto"
+data-ad-format="auto"
+data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
-<div class="wrap">
-<div id="s-filmes" class="screen show">
-<div class="card" style="border:3px solid gold;background:linear-gradient(135deg,#111,#332200)"><h3 class="h">🎬 V16 GERADOR DE FILMES - 3 EM 1 + LIXEIRINHA 🗑️ + SALVAR 💾</h3><p style="color:#ccc;font-size:12px;text-align:center">1️⃣ Slideshow Fotos + 2️⃣ IA Texto->Filme + 3️⃣ Juntar Vídeos</p></div>
-<div class="card"><h3 class="h">🎞️ LINHA DO TEMPO - Adicione do celular</h3><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px"><div><p style="color:gold;font-size:10px">📸 FOTOS DO CELULAR</p><input type="file" id="filmFoto" accept="image/*" multiple class="in"><button class="btn" onclick="addFilmFoto()">💾 + FOTO</button></div><div><p style="color:gold;font-size:10px">🎬 VÍDEOS DO CELULAR</p><input type="file" id="filmVideo" accept="video/*" multiple class="in"><button class="btn" onclick="addFilmVideo()">💾 + VÍDEO</button></div><div><p style="color:gold;font-size:10px">🎵 MÚSICAS DO CELULAR</p><input type="file" id="filmAudio" accept="audio/*" class="in"><button class="btn" onclick="addFilmAudio()">💾 + ÁUDIO</button></div></div><div style="margin-top:10px"><p style="color:gold;font-size:10px">▶️ YOUTUBE COMO CLIP</p><input id="filmYt" class="in" placeholder="Cole link YouTube"><button class="btn2" onclick="addFilmYt()">▶️ + YOUTUBE</button></div><div class="timeline" id="filmTimeline"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px"><button class="btn2" onclick="clearTimeline()">🗑️ LIMPAR LINHA (Lixeirinha)</button><button class="btn2" onclick="saveTimeline()">💾 SALVAR PROJETO</button></div></div>
-<div class="card"><h3 class="h">1️⃣ GERAR FILME SLIDESHOW (Fotos + Música)</h3><input id="filmTitulo" class="in" placeholder="Título do filme: Minha Gratidão"><input id="filmLegenda" class="in" placeholder="Legenda dourada: Gratidão transforma!"><select id="filmTrans" class="in"><option value="fade">✨ Fade Suave</option><option value="zoom">🔍 Zoom Dourado</option></select><button class="btn pulse" onclick="gerarFilmeSlideshow()">🎬 1️⃣ GERAR FILME SLIDESHOW E SALVAR 💾</button></div>
-<div class="card" style="border:3px solid #0ff"><h3 class="h" style="color:#0ff">2️⃣ GERAR FILME COM IA - Texto vira Filme</h3><textarea id="iaPrompt" class="in" rows="2" placeholder="Ex: praia dourada ao pôr do sol, gratidão, universo brilhando"></textarea><select id="iaEstilo" class="in"><option value="gold">💛 Estilo Dourado Gratidão</option><option value="nature">🌲 Natureza Mágica</option><option value="space">🌌 Universo</option></select><input id="iaDuracao" type="number" class="in" value="10"><button class="btn" style="background:#0ff;color:#000" onclick="gerarFilmeIA()">🤖 2️⃣ GERAR COM IA E SALVAR 💾</button></div>
-<div class="card" style="border:3px solid #f0f"><h3 class="h" style="color:#f0f">3️⃣ EDITOR PROFISSIONAL - Juntar Vídeos</h3><input id="editTitulo" class="in" placeholder="Nome do filme final"><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><button class="btn2" onclick="juntarVideos()">🔗 3️⃣ JUNTAR VÍDEOS E SALVAR</button><button class="btn2" onclick="cortarVideo()">✂️ Cortar Último</button></div><button class="btn" style="background:#f0f;color:#000;margin-top:8px" onclick="exportarFilmeFinal()">💾 EXPORTAR FILME FINAL MP4</button></div>
-<div class="card"><h3 class="h">🎬 PREVIEW DO FILME</h3><canvas id="movieCanvas" width="720" height="400"></canvas><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px"><button class="btn2" onclick="playPreview()">▶️ Play Preview</button><button class="btn2" onclick="stopPreview()">⏹️ Parar</button></div><video id="finalVideo" controls style="width:100%;border:3px solid gold;border-radius:12px;display:none;margin-top:10px"></video><div id="listFilmes" style="margin-top:10px"></div></div>
+
+<div class="player">
+<iframe id="tv" src="https://www.youtube.com/embed/jfkFjPyJRdk?autoplay=0" allowfullscreen></iframe>
 </div>
-<div id="s-midia" class="screen"><div class="card"><h3 class="h">📁 Mídia - LIXEIRINHA 🗑️ + SALVAR 💾</h3><input type="file" id="addAudioFile" accept="audio/*" class="in"><button class="btn" onclick="addAudioFromPhone()">💾 + MÚSICA DO CELULAR</button><div id="listAudios"></div><input type="file" id="addFotoFileMidia" accept="image/*" class="in"><button class="btn" onclick="addFotoFromPhoneMidia()">💾 + FOTO</button><div id="listFotosMidia" style="display:grid;grid-template-columns:1fr 1fr;gap:6px"></div><input type="file" id="addVideoFile" accept="video/*" class="in"><button class="btn" onclick="addVideoFromPhone()">💾 + VÍDEO</button><div id="listVideos"></div><input id="midiaYtLink" class="in" placeholder="YouTube link"><button class="btn2" onclick="addMidiaYoutube()">▶️ + YOUTUBE E SALVAR</button><div id="listMidiaYoutube"></div></div></div>
-<div id="s-fotos" class="screen"><div class="card"><h3 class="h">📸 Fotos - LIXEIRINHA 🗑️ + SALVAR 💾</h3><input type="file" id="addFotoFile" accept="image/*" class="in"><button class="btn" onclick="addFotoFromPhone()">💾 ADICIONAR + SALVAR FOTO</button><div id="listF" style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px"></div></div></div>
-<div id="s-sonora" class="screen"><div class="card"><h3 class="h">🎵 Sonora - ADICIONAR + LIXEIRINHA 🗑️ + SALVAR 💾</h3><p style="color:gold;font-size:10px">📁 ADICIONAR MÚSICA DO CELULAR</p><input type="file" id="sonoraFile" accept="audio/*" class="in"><button class="btn" onclick="addSonoraFile()">💾 + ADICIONAR MÚSICA DO CELULAR E SALVAR</button><div id="listSonoraFiles"></div><hr style="margin:8px 0;border:1px solid #333"><p style="color:gold;font-size:10px">▶️ ADICIONAR DO YOUTUBE</p><input id="ytLink" class="in" placeholder="Cole link YouTube"><button class="btn" onclick="addYoutube()">💾 + ADICIONAR YOUTUBE E SALVAR</button><div id="ytPlayer" style="margin-top:8px"></div><div id="listYoutube"></div><audio id="sonAudio" loop></audio></div></div>
-<div id="s-social" class="screen"><div class="card"><h3 class="h">🌐 Redes + YouTube - SALVAR 💾</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><button class="btn2" onclick="window.open('https://www.youtube.com','_blank')">▶️ YouTube</button><button class="btn2" onclick="window.open('https://www.instagram.com','_blank')">📸 Insta</button><button class="btn2" onclick="window.open('https://www.facebook.com','_blank')">👍 Face</button><button class="btn2" onclick="window.open('https://wa.me','_blank')">💚 Whats</button></div><input id="ytSearch" class="in" placeholder="Buscar no YouTube: música relaxante"><button class="btn" onclick="searchYoutube()">🔍 Buscar no YouTube</button><hr style="margin:8px 0;border:1px solid #333"><input id="socialNome" class="in" placeholder="Nome do link"><input id="socialLink" class="in" placeholder="https://..."><button class="btn" onclick="addSocialFav()">💾 ADICIONAR + SALVAR LINK</button><div id="listSocialFav"></div></div></div>
-<div id="s-grat" class="screen"><div class="card"><h3 class="h">✨ Gratidão - LIXEIRINHA 🗑️ + SALVAR 💾</h3><input id="gratText" class="in" placeholder="Pelo que sou grato hoje?"><button class="btn" onclick="addGrat()">💾 ADICIONAR + SALVAR GRATIDÃO</button><div id="listGrat"></div></div></div>
-<div id="s-banco" class="screen"><div class="card"><h3 class="h">💰 Banco - LIXEIRINHA 🗑️ + SALVAR 💾</h3><h2 id="bankSaldo" style="color:gold;text-align:center">R$ 0,00</h2><input id="bankValor" type="number" class="in" placeholder="Valor"><input id="bankDesc" class="in" placeholder="Descrição"><button class="btn" onclick="addBank()">💾 ADICIONAR + SALVAR</button><div id="listBank"></div></div></div>
-<div id="s-apoiar" class="screen"><div class="card" style="border:3px solid gold"><h3 class="h">❤️ Apoiar com valor do coração - SALVAR 💾</h3><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"><button style="background:#111;border:2px solid gold;color:gold;border-radius:16px;padding:14px;font-weight:900" onclick="setApoio(5)">R$ 5</button><button style="background:#111;border:2px solid gold;color:gold;border-radius:16px;padding:14px;font-weight:900" onclick="setApoio(20)">R$ 20</button><button style="background:#111;border:2px solid gold;color:gold;border-radius:16px;padding:14px;font-weight:900" onclick="setApoio(100)">R$ 100</button></div><input id="apoioValor" type="number" class="in" placeholder="Valor do coração R$"><input id="pixKey" class="in" value="bancogratidao@gmail.com"><button class="btn pulse" onclick="apoiar()">💾 ❤️ APOIAR - COPIAR PIX E SALVAR</button><p id="apoioMsg" style="color:gold;text-align:center;margin-top:8px"></p></div></div>
-<div id="s-backup" class="screen"><div class="card"><h3 class="h">💾 Backup + Instalar + Central - SALVAR 💾</h3><button class="btn pulse" style="background:gold;color:#000" onclick="instalarApp()">📲 INSTALAR APLICATIVO</button><button class="btn" onclick="exportBackup()">💾 EXPORTAR BACKUP</button><a class="btn2" style="display:block;text-align:center;text-decoration:none" href="https://bancogratidaooficial-ops.github.io/banco-gratidao-central-menu/" target="_blank">🔗 Central todas versões</a></div></div>
+
+<div class="lista">
+<div class="canal" onclick="document.getElementById('tv').src='https://www.youtube.com/embed/jfkFjPyJRdk?autoplay=1'">Globo</div>
+<div class="canal" onclick="document.getElementById('tv').src='https://www.youtube.com/embed/2GfK4cOSWw?autoplay=1'">SBT</div>
+<div class="canal" onclick="document.getElementById('tv').src='https://www.youtube.com/embed/F75Ipr0u1E?autoplay=1'">Record</div>
 </div>
+
 <script>
-let D=JSON.parse(localStorage.getItem('v16filmes')||'{"audios":[],"fotos":[],"videos":[],"fotosMidia":[],"grat":[],"bank":[]}');
-let timeline=[], deferredPrompt=null, recordedChunks=[], previewInterval=null;
-let sonoraCustom=JSON.parse(localStorage.getItem('sonoraCustom')||'[]');
-let ytList=JSON.parse(localStorage.getItem('ytList')||'[]');
-let midiaYtList=JSON.parse(localStorage.getItem('midiaYtList')||'[]');
-let socialFav=JSON.parse(localStorage.getItem('socialFav')||'[]');
-let filmesSalvos=JSON.parse(localStorage.getItem('filmesSalvos')||'[]');
-function save(){localStorage.setItem('v16filmes',JSON.stringify(D));}
-function saveFilmes(){localStorage.setItem('filmesSalvos',JSON.stringify(filmesSalvos));}
-function tab(id,el){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('show'));document.getElementById('s-'+id).classList.add('show');document.querySelectorAll('.pill').forEach(p=>p.classList.remove('on'));if(el)el.classList.add('on');}
-function uid(){return Date.now()+Math.random();}
-function fileToBase64(f){return new Promise((res,rej)=>{let r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(f);});}
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
-function instalarApp(){if(deferredPrompt)deferredPrompt.prompt();else alert('Clica nos 3 pontinhos ⋮ > Instalar app');}
-function setApoio(v){document.getElementById('apoioValor').value=v;}
-function apoiar(){let v=document.getElementById('apoioValor').value||10;let pix=document.getElementById('pixKey').value;try{navigator.clipboard.writeText(pix);document.getElementById('apoioMsg').innerText='✅ PIX '+pix+' R$ '+v+' copiado! SALVO!';}catch(e){document.getElementById('apoioMsg').innerText='PIX: '+pix;}}
-function getYoutubeId(url){let m=url.match(/(?:v=|\.be\/|embed\/)([a-zA-Z0-9_-]{11})/);return m?m[1]:null;}
-async function addFilmFoto(){let files=document.getElementById('filmFoto').files;for(let f of files){let b=await fileToBase64(f);timeline.push({id:uid(),type:'foto',name:f.name,data:b});}renderTimeline();alert('✅ Foto na linha com lixeirinha 🗑️');}
-async function addFilmVideo(){let files=document.getElementById('filmVideo').files;for(let f of files){let b=await fileToBase64(f);timeline.push({id:uid(),type:'video',name:f.name,data:b});}renderTimeline();alert('✅ Vídeo na linha com lixeirinha 🗑️');}
-async function addFilmAudio(){let f=document.getElementById('filmAudio').files[0];if(!f)return alert('Escolhe áudio!');let b=await fileToBase64(f);timeline.push({id:uid(),type:'audio',name:f.name,data:b});renderTimeline();alert('✅ Áudio salvo 💾');}
-function addFilmYt(){let link=document.getElementById('filmYt').value.trim();let id=getYoutubeId(link);if(!id)return alert('Link inválido!');timeline.push({id:uid(),type:'yt',name:'YT '+id,ytId:id,link});renderTimeline();alert('✅ YouTube na linha com lixeirinha 🗑️');}
-function renderTimeline(){let h='';timeline.forEach(t=>{let icon=t.type==='foto'?'📸':t.type==='video'?'🎬':t.type==='audio'?'🎵':'▶️';h+=`<div class="tl-item"><div>${icon} ${t.name.slice(0,10)}</div><div style="display:flex;gap:2px;margin-top:4px"><button class="save-btn" style="font-size:9px">💾</button><button class="trash-btn" style="font-size:9px" onclick="delTimeline(${t.id})">🗑️</button></div></div>`;});document.getElementById('filmTimeline').innerHTML=h||'<small style="color:#666">Linha vazia - adicione fotos e vídeos do celular</small>';}
-function delTimeline(id){if(!confirm('Remover da linha? 🗑️'))return;timeline=timeline.filter(x=>x.id!==id);renderTimeline();}
-function clearTimeline(){if(!confirm('Limpar linha toda? 🗑️'))return;timeline=[];renderTimeline();}
-function saveTimeline(){localStorage.setItem('timeline',JSON.stringify(timeline));alert('✅ Linha salva 💾 com lixeirinha 🗑️');}
-async function gerarFilmeSlideshow(){
-if(timeline.length===0)return alert('Adicione fotos na linha!');
-let titulo=document.getElementById('filmTitulo').value||'Meu Filme Gratidão';
-let legenda=document.getElementById('filmLegenda').value||'Gratidão transforma tudo!';
-let canvas=document.getElementById('movieCanvas');let ctx=canvas.getContext('2d');
-let fotos=timeline.filter(t=>t.type==='foto');if(fotos.length===0)return alert('Adicione pelo menos 1 foto do celular!');
-let stream=canvas.captureStream(30);let rec=new MediaRecorder(stream,{mimeType:'video/webm'});recordedChunks=[];rec.ondataavailable=e=>recordedChunks.push(e.data);
-rec.onstop=()=>{let blob=new Blob(recordedChunks,{type:'video/webm'});let url=URL.createObjectURL(blob);let v=document.getElementById('finalVideo');v.src=url;v.style.display='block';filmesSalvos.push({id:uid(),nome:titulo,tipo:'slideshow'});saveFilmes();renderFilmes();alert('✅ Filme slideshow 1️⃣ gerado e salvo 💾 com lixeirinha 🗑️!');};
-rec.start();let idx=0;let framesPerFoto=90;
-let interval=setInterval(()=>{
-if(idx>=fotos.length*framesPerFoto){clearInterval(interval);rec.stop();return;}
-let fotoIdx=Math.floor(idx/framesPerFoto);let progress=(idx%framesPerFoto)/framesPerFoto;
-let img=new Image();img.src=fotos[fotoIdx].data;
-ctx.fillStyle='#000';ctx.fillRect(0,0,canvas.width,canvas.height);
-let scale=1+progress*0.3;let w=canvas.width*scale;let h=canvas.height*scale;
-try{ctx.drawImage(img,(canvas.width-w)/2,(canvas.height-h)/2,w,h);}catch(e){}
-ctx.fillStyle='rgba(0,0,0,0.6)';ctx.fillRect(0,canvas.height-70,canvas.width,70);
-ctx.fillStyle='gold';ctx.font='bold 20px sans-serif';ctx.fillText(titulo,20,canvas.height-40);ctx.font='14px sans-serif';ctx.fillStyle='#fff';ctx.fillText(legenda,20,canvas.height-15);
-idx++;},33);
-}
-async function gerarFilmeIA(){
-let prompt=document.getElementById('iaPrompt').value.trim();if(!prompt)return alert('Digite o que quer ver!');
-let estilo=document.getElementById('iaEstilo').value;let duracao=parseInt(document.getElementById('iaDuracao').value)||10;
-let canvas=document.getElementById('movieCanvas');let ctx=canvas.getContext('2d');
-let stream=canvas.captureStream(30);let rec=new MediaRecorder(stream,{mimeType:'video/webm'});recordedChunks=[];rec.ondataavailable=e=>recordedChunks.push(e.data);
-rec.onstop=()=>{let blob=new Blob(recordedChunks,{type:'video/webm'});let url=URL.createObjectURL(blob);let v=document.getElementById('finalVideo');v.src=url;v.style.display='block';filmesSalvos.push({id:uid(),nome:'IA: '+prompt.slice(0,25),tipo:'ia'});saveFilmes();renderFilmes();alert('✅ Filme IA 2️⃣ gerado e salvo 💾 com lixeirinha 🗑️!');};
-rec.start();let start=Date.now();
-function drawIA(){
-let elapsed=(Date.now()-start)/1000;if(elapsed>duracao){rec.stop();return;}
-let t=elapsed;
-if(estilo==='gold'){let grad=ctx.createRadialGradient(canvas.width/2,canvas.height/2,0,canvas.width/2,canvas.height/2,canvas.width);grad.addColorStop(0,'#FFD700');grad.addColorStop(0.5,'#ff8c00');grad.addColorStop(1,'#000');ctx.fillStyle=grad;ctx.fillRect(0,0,canvas.width,canvas.height);}
-else if(estilo==='space'){ctx.fillStyle='#000';ctx.fillRect(0,0,canvas.width,canvas.height);for(let i=0;i<80;i++){let x=(i*73+t*20)%canvas.width;let y=(i*37+t*10)%canvas.height;ctx.fillStyle='rgba(255,255,100,'+(0.5+Math.sin(t+i)*0.5)+')';ctx.fillRect(x,y,2,2);}}
-else{ctx.fillStyle='#001100';ctx.fillRect(0,0,canvas.width,canvas.height);}
-for(let i=0;i<35;i++){let x=(Math.sin(t+i)*canvas.width/2+canvas.width/2);let y=(Math.cos(t*0.7+i)*canvas.height/2+canvas.height/2);ctx.fillStyle='rgba(255,215,0,'+(0.6+Math.sin(t+i)*0.4)+')';ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fill();}
-ctx.fillStyle='rgba(0,0,0,0.7)';ctx.fillRect(0,canvas.height-70,canvas.width,70);
-ctx.fillStyle='gold';ctx.font='bold 16px sans-serif';ctx.fillText('🤖 IA: '+prompt.slice(0,38),20,canvas.height-40);
-ctx.font='12px sans-serif';ctx.fillStyle='#0ff';ctx.fillText('Estilo '+estilo+' - '+elapsed.toFixed(1)+'s / '+duracao+'s',20,canvas.height-18);
-requestAnimationFrame(drawIA);
-}
-drawIA();
-}
-async function juntarVideos(){
-let videos=timeline.filter(t=>t.type==='video');if(videos.length===0)return alert('Adicione vídeos do celular na linha primeiro!');
-alert('🔗 Juntando '+videos.length+' vídeos com lixeirinha 🗑️ - profissional!');
-let canvas=document.getElementById('movieCanvas');let ctx=canvas.getContext('2d');
-let titulo=document.getElementById('editTitulo').value||'Filme Final Gratidão';
-let stream=canvas.captureStream(30);let rec=new MediaRecorder(stream,{mimeType:'video/webm'});recordedChunks=[];rec.ondataavailable=e=>recordedChunks.push(e.data);
-rec.onstop=()=>{let blob=new Blob(recordedChunks,{type:'video/webm'});let url=URL.createObjectURL(blob);let v=document.getElementById('finalVideo');v.src=url;v.style.display='block';filmesSalvos.push({id:uid(),nome:titulo,tipo:'editor 3️⃣',qtd:videos.length});saveFilmes();renderFilmes();alert('✅ Editor 3️⃣ - Vídeos juntados e salvos 💾 com lixeirinha 🗑️!');};
-rec.start();let idx=0;let curV=document.createElement('video');curV.muted=true;curV.playsInline=true;
-function playNext(){if(idx>=videos.length){rec.stop();return;}let vd=videos[idx];curV.src=vd.data;curV.oncanplay=()=>{curV.play();let loop=setInterval(()=>{if(curV.ended||curV.currentTime>6){clearInterval(loop);idx++;playNext();}else{ctx.drawImage(curV,0,0,canvas.width,canvas.height);ctx.fillStyle='rgba(0,0,0,0.5)';ctx.fillRect(0,canvas.height-45,canvas.width,45);ctx.fillStyle='gold';ctx.font='bold 14px sans-serif';ctx.fillText(titulo+' - Clip '+(idx+1)+'/'+videos.length,20,canvas.height-15);}},33);};curV.onerror=()=>{idx++;playNext();};}
-playNext();
-}
-function cortarVideo(){if(timeline.length===0)return alert('Linha vazia!');if(!confirm('Cortar último da linha? 🗑️ lixeirinha'))return;timeline.pop();renderTimeline();alert('✅ Cortado com lixeirinha 🗑️ e salvo 💾');}
-function exportarFilmeFinal(){let v=document.getElementById('finalVideo');if(!v.src||v.style.display==='none')return alert('Gere um filme primeiro nos botões 1️⃣ 2️⃣ 3️⃣!');let a=document.createElement('a');a.href=v.src;a.download='filme-gratidao-V16-'+Date.now()+'.webm';a.click();alert('✅ Filme final exportado e salvo 💾! Compartilhe no WhatsApp 💚 com lixeirinha 🗑️');}
-function playPreview(){let canvas=document.getElementById('movieCanvas');let ctx=canvas.getContext('2d');if(previewInterval)clearInterval(previewInterval);let t=0;previewInterval=setInterval(()=>{ctx.fillStyle='#111';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='gold';ctx.font='bold 18px sans-serif';ctx.fillText('🎬 Preview V16 3em1 - '+timeline.length+' clips',20,50);timeline.slice(0,6).forEach((tl,i)=>{let icon=tl.type==='foto'?'📸':tl.type==='video'?'🎬':'🎵';ctx.fillStyle='#fff';ctx.font='12px sans-serif';ctx.fillText((i+1)+'. '+icon+' '+tl.name.slice(0,20),20,80+i*22);});ctx.fillStyle='rgba(255,215,0,'+(0.5+Math.sin(t)*0.5)+')';ctx.fillRect(0,canvas.height-8,canvas.width,8);t+=0.15;},100);}
-function stopPreview(){if(previewInterval)clearInterval(previewInterval);let ctx=document.getElementById('movieCanvas').getContext('2d');ctx.clearRect(0,0,720,400);ctx.fillStyle='#000';ctx.fillRect(0,0,720,400);ctx.fillStyle='gold';ctx.font='bold 20px sans-serif';ctx.fillText('Preview parado - gere filme 1️⃣ 2️⃣ 3️⃣',20,200);}
-function renderFilmes(){let h='';filmesSalvos.slice().reverse().forEach(f=>{h+=`<div class="item"><div>🎬 ${f.nome} (${f.tipo}) <span class="save-btn">💾 Salvo</span></div><div style="display:flex;gap:4px"><button class="btn2" style="width:auto;padding:6px 10px" onclick="let v=document.getElementById('finalVideo');v.style.display='block';alert('Filme ${f.nome} carregado com lixeirinha 🗑️')">▶️</button><button class="trash-btn" onclick="delFilme(${f.id})">🗑️</button></div></div>`;});document.getElementById('listFilmes').innerHTML=h||'<small style="color:#666">Nenhum filme ainda - gere 1️⃣ 2️⃣ 3️⃣</small>';}
-function delFilme(id){if(!confirm('Excluir filme? 🗑️ Lixeirinha'))return;filmesSalvos=filmesSalvos.filter(x=>x.id!==id);saveFilmes();renderFilmes();}
-function renderMidia(){}
-function addAudioFromPhone(){alert('Use a linha do tempo 🎬 - já tem lixeirinha 🗑️ + salvar 💾');}
-function addFotoFromPhoneMidia(){}
-function addVideoFromPhone(){}
-function addMidiaYoutube(){let link=document.getElementById('midiaYtLink').value.trim();let id=getYoutubeId(link);if(!id)return alert('Link inválido!');midiaYtList.push({id:uid(),ytId:id});localStorage.setItem('midiaYtList',JSON.stringify(midiaYtList));alert('✅ YouTube salvo 💾 com lixeirinha 🗑️');}
-function searchYoutube(){let q=document.getElementById('ytSearch').value.trim();if(!q)return alert('O que buscar no YouTube?');window.open('https://www.youtube.com/results?search_query='+encodeURIComponent(q),'_blank');}
-function addSonoraFile(){alert('Use linha do tempo 🎬 - add música do celular com lixeirinha 🗑️');}
-function addYoutube(){let link=document.getElementById('ytLink').value.trim();let id=getYoutubeId(link);if(!id)return alert('Link inválido!');ytList.push({id:uid(),ytId:id});localStorage.setItem('ytList',JSON.stringify(ytList));alert('✅ YouTube salvo 💾');}
-function addSocialFav(){let nome=document.getElementById('socialNome').value.trim();let link=document.getElementById('socialLink').value.trim();if(!nome||!link)return alert('Nome e link!');socialFav.push({id:uid(),nome,link});localStorage.setItem('socialFav',JSON.stringify(socialFav));alert('✅ Link salvo 💾 com lixeirinha 🗑️');}
-function addGrat(){let t=document.getElementById('gratText').value.trim();if(!t)return alert('Escreve gratidão!');D.grat.push({id:uid(),text:t,date:new Date().toLocaleString()});save();alert('✅ Gratidão salva 💾 com lixeirinha 🗑️');}
-function addBank(){let v=parseFloat(document.getElementById('bankValor').value);if(!v)return alert('Valor!');D.bank.push({id:uid(),valor:v,desc:document.getElementById('bankDesc')?.value||''});save();alert('✅ Banco salvo 💾');}
-function exportBackup(){let blob=new Blob([JSON.stringify(D)],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='backup-V16-filmes-'+Date.now()+'.json';a.click();alert('✅ Backup salvo 💾');}
-try{let tl=JSON.parse(localStorage.getItem('timeline')||'[]');if(tl.length>0)timeline=tl;}catch(e){}
-renderTimeline();renderFilmes();
-if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{});}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js')}
 </script>
+
+<footer style="padding:20px;background:#1a1a1a;margin-top:30px;">
+<p>Quer tirar anúncios? PIX R$2,99 - Chave: 025.446.319-37</p>
+<p style="font-size:12px;color:#888;">Quer internet rápida? Clique aqui</p>
+</footer>
+
 </body>
 </html>
